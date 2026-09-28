@@ -14,18 +14,21 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
 
   grafana:
-  image: grafana/grafana:latest
-  container_name: portfolio-project-2-grafana
-  ports:
-    - "3000:3000"
-  environment:
-    GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER}
-    GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
-  volumes:
-    - grafana-storage:/var/lib/grafana
-    
+    image: grafana/grafana:latest
+    container_name: portfolio-project-2-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
   node-exporter:
     image: prom/node-exporter:latest
     container_name: portfolio-project-2-node-exporter
     ports:
       - "9100:9100"
+
+volumes:
+  grafana-storage:
